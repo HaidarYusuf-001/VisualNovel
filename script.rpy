@@ -10,13 +10,13 @@ define char_pos = Position(xalign=0.14, yalign=0.7)
 init python:
     # Node class to store data and the next node reference
     class Node:
-        def __init__(self, data, next_node=None):
+        def _init_(self, data, next_node=None):
             self.data = data
             self.next_node = next_node
 
 # LinkedList class to manage nodes
     class LinkedList:
-        def __init__(self):
+        def _init_(self):
             self.head = None
 
         def add(self, data):
@@ -45,8 +45,9 @@ init python:
                 count += 1
                 current = current.next_node
             return count
-    choices = LinkedList()
+    story_bubbles = LinkedList()
 
+$ story_bubbles.add("Node 1")
 label start:
     scene bg office
 
@@ -56,12 +57,11 @@ label start:
 
     menu:
         "Interogasi saksi":
-            $ choices.add("Interogasi saksi")
             jump interogasi_saksi1
         "Cari petunjuk di TKP":
-            $ choices.add("Cari petunjuk di TKP")
             jump tkp1
 
+$ story_bubbles.add("Node 2")
 label interogasi_saksi1:
     scene bg interrogation
 
@@ -80,15 +80,13 @@ label interogasi_saksi1:
 
     menu:
         "Interogasi saksi kedua":
-            $ choices.add("Interogasi saksi kedua")
             jump interogasi_saksi2
         "Cari petunjuk di TKP":
-            $ choices.add("Cari petunjuk di TKP")
             jump tkp1
         "Lapor ke bos":
-            $ choices.add("Lapor ke bos")
             jump lapor_bos
 
+$ story_bubbles.add("Node 3")
 label interogasi_saksi2:
     scene bg interrogation
 
@@ -107,15 +105,13 @@ label interogasi_saksi2:
 
     menu:
         "Interogasi saksi ketiga":
-            $ choices.add("Interogasi saksi ketiga")
             jump interogasi_saksi3
         "Cari petunjuk di TKP":
-            $ choices.add("Cari petunjuk di TKP")
             jump tkp2
         "Lapor ke bos":
-            $ choices.add("Lapor ke bos")
             jump lapor_bos
 
+$ story_bubbles.add("Node 4")
 label interogasi_saksi3:
     scene bg interrogation
 
@@ -134,12 +130,11 @@ label interogasi_saksi3:
 
     menu:
         "Cari petunjuk di TKP":
-            $ choices.add("Cari petunjuk di TKP")
             jump tkp3
         "Lapor ke bos":
-            $ choices.add("Lapor ke bos")
             jump lapor_bos
 
+$ story_bubbles.add("Node 5")
 label tkp1:
     scene bg tkp1
     show detective at char_pos
@@ -150,15 +145,13 @@ label tkp1:
 
     menu:
         "Periksa lebih lanjut di TKP":
-            $ choices.add("Periksa lebih lanjut di TKP")
             jump tkp_detail1
         "Interogasi saksi lagi":
-            $ choices.add("Interogasi saksi lagi")
             jump interogasi_saksi1
         "Lapor ke bos":
-            $ choices.add("Lapor ke bos")
             jump lapor_bos
 
+$ story_bubbles.add("Node 6")
 label tkp2:
     scene bg tkp2
     show detective at char_pos
@@ -169,15 +162,13 @@ label tkp2:
 
     menu:
         "Periksa isi tas":
-            $ choices.add("Periksa isi tas")
             jump periksa_tas
         "Interogasi saksi lagi":
-            $ choices.add("Interogasi saksi lagi")
             jump interogasi_saksi2
         "Lapor ke bos":
-            $ choices.add("Lapor ke bos")
             jump lapor_bos
 
+$ story_bubbles.add("Node 7")
 label tkp3:
     scene bg tkp3
     show detective at char_pos
@@ -188,15 +179,13 @@ label tkp3:
 
     menu:
         "Periksa tong sampah":
-            $ choices.add("Periksa tong sampah")
             jump periksa_tong
         "Interogasi saksi lagi":
-            $ choices.add("Interogasi saksi lagi")
             jump interogasi_saksi3
         "Lapor ke bos":
-            $ choices.add("Lapor ke bos")
             jump lapor_bos
 
+$ story_bubbles.add("Node 8")
 label tkp_detail1:
     scene bg crime_scene
     show detective at char_pos
@@ -206,15 +195,13 @@ label tkp_detail1:
 
     menu:
         "Periksa lebih lanjut di TKP":
-            $ choices.add("Periksa lebih lanjut di TKP")
             jump tkp_detail2
         "Interogasi saksi lagi":
-            $ choices.add("Interogasi saksi lagi")
             jump interogasi_saksi1
         "Lapor ke bos":
-            $ choices.add("Lapor ke bos")
             jump lapor_bos
 
+$ story_bubbles.add("Node 9")
 label tkp_detail2:
     scene bg crime_scene
     show detective at char_pos
@@ -224,12 +211,11 @@ label tkp_detail2:
 
     menu:
         "Kembali ke kantor":
-            $ choices.add("Kembali ke kantor")
             jump kantor
         "Lapor ke bos":
-            $ choices.add("Lapor ke bos")
             jump lapor_bos
 
+$ story_bubbles.add("Node 10")
 label periksa_tas:
     scene bg crime_scene
     show detective at char_pos
@@ -239,15 +225,13 @@ label periksa_tas:
 
     menu:
         "Periksa lebih lanjut di TKP":
-            $ choices.add("Periksa lebih lanjut di TKP")
             jump tkp_detail3
         "Interogasi saksi lagi":
-            $ choices.add("Interogasi saksi lagi")
             jump interogasi_saksi2
         "Lapor ke bos":
-            $ choices.add("Lapor ke bos")
             jump lapor_bos
 
+$ story_bubbles.add("Node 11")
 label periksa_tong:
     scene bg tong_sampah
     show detective at char_pos
@@ -257,15 +241,15 @@ label periksa_tong:
 
     menu:
         "Periksa lebih lanjut di TKP":
-            $ choices.add("Periksa lebih lanjut di TKP")
             jump tkp_detail3
         "Interogasi saksi lagi":
-            $ choices.add("Interogasi saksi lagi")
             jump interogasi_saksi3
         "Lapor ke bos":
-            $ choices.add("Lapor ke bos")
             jump lapor_bos
+        "Kembali ke kantor":
+            jump kejanggalan
 
+$ story_bubbles.add("Node 12")
 label tkp_detail3:
     scene bg crime_scene
     show detective at char_pos
@@ -275,79 +259,203 @@ label tkp_detail3:
 
     menu:
         "Kembali ke kantor":
-            $ choices.add("Kembali ke kantor")
             jump kantor
         "Lapor ke bos":
-            $ choices.add("Lapor ke bos")
             jump lapor_bos
 
+$ story_bubbles.add("Node 13")
 label lapor_bos:
     scene bg office
+    show boss at char_pos
 
+    b "Bagaimana perkembangan kasusnya?"
+    hide boss
     show detective at char_pos
-    e "Aku harus melaporkan apa yang kutemukan kepada bos."
+    e "Aku menemukan beberapa petunjuk penting. Aku yakin ini akan membantu menyelesaikan kasus ini."
     hide detective
     show boss at char_pos
-    b "Apa yang sudah kamu temukan sejauh ini?"
+    b "Bagus, teruskan pekerjaanmu. Kita harus segera menyelesaikan kasus ini."
     hide boss
 
     menu:
-        "Laporkan tentang saksi":
-            $ choices.add("Laporkan tentang saksi")
-            jump lapor_saksi
-        "Laporkan tentang TKP":
-            $ choices.add("Laporkan tentang TKP")
-            jump lapor_tkp
-
-label lapor_saksi:
-    scene bg office
-
-    show detective at char_pos
-    e "Para saksi memberikan beberapa informasi penting yang perlu kita tindak lanjuti."
-    hide detective
-    show boss at char_pos
-    b "Baik, lanjutkan pekerjaanmu dan pastikan kita mendapatkan semua bukti yang diperlukan."
-    hide boss
-
-    menu:
-        "Kembali ke TKP":
-            $ choices.add("Kembali ke TKP")
-            jump tkp1
-        "Interogasi saksi lagi":
-            $ choices.add("Interogasi saksi lagi")
-            jump interogasi_saksi1
-        "Kembali ke kantor":
-            $ choices.add("Kembali ke kantor")
+        "Kembali bekerja":
             jump kantor
+        "Istirahat sejenak":
+            jump istirahat
 
-label lapor_tkp:
-    scene bg office
-
-    show detective at char_pos
-    e "TKP memberikan banyak petunjuk yang perlu kita analisis lebih lanjut."
-    hide detective
-    show boss at char_pos
-    b "Bagus, pastikan semua bukti dikumpulkan dan dianalisis dengan teliti."
-    hide boss
-
-    menu:
-        "Kembali ke TKP":
-            $ choices.add("Kembali ke TKP")
-            jump tkp1
-        "Interogasi saksi lagi":
-            $ choices.add("Interogasi saksi lagi")
-            jump interogasi_saksi1
-        "Kembali ke kantor":
-            $ choices.add("Kembali ke kantor")
-            jump kantor
-
+$ story_bubbles.add("Node 14")
 label kantor:
     scene bg office
     show detective at char_pos
 
-    e "Aku sudah punya beberapa petunjuk sekarang. Saatnya menganalisis dan melaporkan."
+    e "Kembali ke kantor untuk menganalisis petunjuk lebih lanjut."
+    hide detective
 
-    e "Kasus ini sepertinya akan terpecahkan dalam waktu singkat."
+    menu:
+        "Analisis rambut di lab":
+            jump analisis_rambut
+        "Telusuri jejak kaki":
+            jump telusuri_jejak
+        "Interogasi saksi lagi":
+            jump interogasi_saksi1
 
-    # Tamat permainan
+$ story_bubbles.add("Node 26")
+label kejanggalan:
+    scene bg office
+    show detective at char_pos
+
+    e "Terlalu banyak kejanggalan dalam kasus ini"
+    hide detective
+
+    menu:
+        "Sepertinya kasus ini tidak akan terpecahkan dalam waktu dekat":
+            jump ending_tidak_jelas
+
+$ story_bubbles.add("Node 15")
+label analisis_rambut:
+    scene bg lab
+    show detective at char_pos
+
+    e "Analisis rambut ini menunjukkan bahwa ini milik tersangka yang pernah terlibat kasus serupa sebelumnya."
+    hide detective
+
+    menu:
+        "Cari tersangka":
+            jump cari_tersangka
+        "Lapor ke bos":
+            jump lapor_bos
+
+$ story_bubbles.add("Node 16")
+label telusuri_jejak:
+    scene bg street
+    show detective at char_pos
+
+    e "Jejak kaki ini mengarah ke sebuah rumah di dekat sini."
+    hide detective
+
+    menu:
+        "Periksa rumah tersebut":
+            jump periksa_rumah
+        "Lapor ke bos":
+            jump lapor_bos
+        "Jejak tersangka menghilang":
+            jump ending_kabur
+
+$ story_bubbles.add("Node 17")
+label cari_tersangka:
+    scene bg street
+    show detective at char_pos
+
+    e "Aku menemukan tersangka berdasarkan petunjuk yang ada. Ini harus segera ditindaklanjuti."
+    hide detective
+
+    menu:
+        "Tahan tersangka":
+            jump tahan_tersangka
+        "Lapor ke bos":
+            jump lapor_bos
+
+$ story_bubbles.add("Node 18")
+label periksa_rumah:
+    scene bg crime_scene
+    show detective at char_pos
+
+    e "Di dalam rumah ini, aku menemukan lebih banyak bukti yang mengarah ke tersangka utama."
+    hide detective
+
+    menu:
+        "Tahan tersangka":
+            jump tahan_tersangka
+        "Lapor ke bos":
+            jump lapor_bos
+
+$ story_bubbles.add("Node 19")
+label tahan_tersangka:
+    scene bg jail
+    show detective at char_pos
+
+    e "Dengan semua bukti yang ada, aku berhasil menahan tersangka utama."
+    hide detective
+
+    menu:
+        "Kasus selesai":
+            jump ending_sukses
+        "Ada masalah":
+            jump ending_gagal
+        "Kembali ke kantor":
+            jump kesalahan
+
+$ story_bubbles.add("Node 27")
+label kesalahan:
+    scene bg office
+    show detective at char_pos
+
+    e "Aku merasa ada yang aneh dari tersangka ini"
+
+    menu:
+        "Cari informasi lebih lanjut":
+            jump ending_salah_tangkap
+
+$ story_bubbles.add("Node 20")
+label istirahat:
+    scene bg lounge
+    show detective at char_pos
+
+    e "Aku butuh istirahat sejenak sebelum melanjutkan investigasi."
+    hide detective
+
+    menu:
+        "Kembali bekerja":
+            jump kantor
+        "Lapor ke bos":
+            jump lapor_bos
+
+$ story_bubbles.add("Node 21")
+label ending_sukses:
+    scene bg office
+    show detective at char_pos
+
+    e "Kasus ini akhirnya berhasil dipecahkan. Tersangka sudah ditahan, dan keadilan telah ditegakkan."
+    hide detective
+
+    return
+
+$ story_bubbles.add("Node 22")
+label ending_gagal:
+    scene bg office
+    show detective at char_pos
+
+    e "Kasus ini tidak bisa diselesaikan. Ada terlalu banyak bukti yang tidak cukup kuat."
+    hide detective
+
+    return
+
+$ story_bubbles.add("Node 23")
+label ending_tidak_jelas:
+    scene bg office
+    show detective at char_pos
+
+    e "Kasus ini masih belum jelas. Banyak pertanyaan yang belum terjawab."
+    hide detective
+
+    return
+
+$ story_bubbles.add("Node 24")
+label ending_kabur:
+    scene bg office
+    show detective at char_pos
+
+    e "Tersangka berhasil kabur. Aku harus mengejar dan menangkapnya."
+    hide detective
+
+    return
+
+$ story_bubbles.add("Node 25")
+label ending_salah_tangkap:
+    scene bg office
+    show detective at char_pos
+
+    e "Ternyata aku salah tangkap. Orang yang kutahan bukan pelakunya."
+    hide detective
+
     return
