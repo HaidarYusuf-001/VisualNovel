@@ -10,13 +10,13 @@ define char_pos = Position(xalign=0.14, yalign=0.7)
 init python:
     # Node class to store data and the next node reference
     class Node:
-        def _init_(self, data, next_node=None):
+        def __init__(self, data, next_node=None):
             self.data = data
             self.next_node = next_node
 
-# LinkedList class to manage nodes
+    # LinkedList class to manage nodes
     class LinkedList:
-        def _init_(self):
+        def __init__(self):
             self.head = None
 
         def add(self, data):
@@ -45,10 +45,38 @@ init python:
                 count += 1
                 current = current.next_node
             return count
+
     story_bubbles = LinkedList()
 
-$ story_bubbles.add("Node 1")
+$ story_bubbles.add("interogasi_saksi1")
+$ story_bubbles.add("interogasi_saksi2")
+$ story_bubbles.add("interogasi_saksi3")
+$ story_bubbles.add("tkp1")
+$ story_bubbles.add("tkp2")
+$ story_bubbles.add("tkp3")
+$ story_bubbles.add("tkp_detail1")
+$ story_bubbles.add("tkp_detail2")
+$ story_bubbles.add("periksa_tas")
+$ story_bubbles.add("periksa_tong")
+$ story_bubbles.add("telusuri_tkp")
+$ story_bubbles.add("lapor_bos")
+$ story_bubbles.add("kembali_kantor")
+$ story_bubbles.add("analisis_rambut")
+$ story_bubbles.add("telusuri_jejak")
+$ story_bubbles.add("cari_tersangka")
+$ story_bubbles.add("periksa_rumah")
+$ story_bubbles.add("tahan_tersangka")
+$ story_bubbles.add("istirahat")
+$ story_bubbles.add("ending_sukses")
+$ story_bubbles.add("ending_gagal")
+$ story_bubbles.add("ending_tidak_jelas")
+$ story_bubbles.add("ending_kabur")
+$ story_bubbles.add("ending_salah_tangkap")
+$ story_bubbles.add("kejanggalan")
+$ story_bubbles.add("kesalahan")
+
 label start:
+    $ current_node = 0
     scene bg office
 
     show detective at char_pos
@@ -57,11 +85,14 @@ label start:
 
     menu:
         "Interogasi saksi":
-            jump interogasi_saksi1
+            $ current_node = 0
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Cari petunjuk di TKP":
-            jump tkp1
+            $ current_node = 3
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 2")
 label interogasi_saksi1:
     scene bg interrogation
 
@@ -80,13 +111,18 @@ label interogasi_saksi1:
 
     menu:
         "Interogasi saksi kedua":
-            jump interogasi_saksi2
+            $ current_node = 1
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Cari petunjuk di TKP":
-            jump tkp1
+            $ current_node = 3
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 11
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 3")
 label interogasi_saksi2:
     scene bg interrogation
 
@@ -105,13 +141,18 @@ label interogasi_saksi2:
 
     menu:
         "Interogasi saksi ketiga":
-            jump interogasi_saksi3
+            $ current_node = 2
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Cari petunjuk di TKP":
-            jump tkp2
+            $ current_node = 4
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 11
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 4")
 label interogasi_saksi3:
     scene bg interrogation
 
@@ -130,11 +171,14 @@ label interogasi_saksi3:
 
     menu:
         "Cari petunjuk di TKP":
-            jump tkp3
+            $ current_node = 5
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 11
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 5")
 label tkp1:
     scene bg tkp1
     show detective at char_pos
@@ -145,13 +189,18 @@ label tkp1:
 
     menu:
         "Periksa lebih lanjut di TKP":
-            jump tkp_detail1
+            $ current_node = 6
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Interogasi saksi lagi":
-            jump interogasi_saksi1
+            $ current_node = 0
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 11
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 6")
 label tkp2:
     scene bg tkp2
     show detective at char_pos
@@ -162,13 +211,18 @@ label tkp2:
 
     menu:
         "Periksa isi tas":
-            jump periksa_tas
+            $ current_node = 8
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Interogasi saksi lagi":
-            jump interogasi_saksi2
+            $ current_node = 1
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 11
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 7")
 label tkp3:
     scene bg tkp3
     show detective at char_pos
@@ -179,13 +233,18 @@ label tkp3:
 
     menu:
         "Periksa tong sampah":
-            jump periksa_tong
+            $ current_node = 9
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Interogasi saksi lagi":
-            jump interogasi_saksi3
+            $ current_node = 2
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 11
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 8")
 label tkp_detail1:
     scene bg crime_scene
     show detective at char_pos
@@ -195,123 +254,144 @@ label tkp_detail1:
 
     menu:
         "Periksa lebih lanjut di TKP":
-            jump tkp_detail2
+            $ current_node = 10
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Interogasi saksi lagi":
-            jump interogasi_saksi1
+            $ current_node = 0
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 11
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 9")
 label tkp_detail2:
     scene bg crime_scene
     show detective at char_pos
 
-    e "Aku menemukan beberapa rambut di topi ini. Ini mungkin bisa dianalisis di lab."
+    e "Aku menemukan sebuah tas besar yang mungkin berisi sesuatu yang penting."
     hide detective
 
     menu:
-        "Kembali ke kantor":
-            jump kantor
+        "Periksa isi tas":
+            $ current_node = 8
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+        "Interogasi saksi lagi":
+            $ current_node = 1
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 11
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 10")
 label periksa_tas:
     scene bg crime_scene
     show detective at char_pos
 
-    e "Aku membuka tas dan menemukan beberapa alat yang mungkin digunakan dalam kejahatan ini."
+    e "Di dalam tas ini aku menemukan sebuah senjata api. Mungkin ini senjata pembunuhan."
     hide detective
 
     menu:
         "Periksa lebih lanjut di TKP":
-            jump tkp_detail3
+            $ current_node = 5
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Interogasi saksi lagi":
-            jump interogasi_saksi2
+            $ current_node = 2
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 11
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 11")
 label periksa_tong:
-    scene bg tong_sampah
-    show detective at char_pos
-
-    e "Aku menemukan senjata api di dalam tong sampah ini. Ini mungkin senjata yang digunakan."
-    hide detective
-
-    menu:
-        "Periksa lebih lanjut di TKP":
-            jump tkp_detail3
-        "Interogasi saksi lagi":
-            jump interogasi_saksi3
-        "Lapor ke bos":
-            jump lapor_bos
-        "Kembali ke kantor":
-            jump kejanggalan
-
-$ story_bubbles.add("Node 12")
-label tkp_detail3:
     scene bg crime_scene
     show detective at char_pos
 
-    e "Aku menemukan beberapa jejak penting yang bisa membantu menyelesaikan kasus ini."
+    e "Di dalam tong sampah ini aku menemukan beberapa barang bukti yang mungkin terkait dengan kasus ini."
     hide detective
 
     menu:
-        "Kembali ke kantor":
-            jump kantor
+        "Periksa lebih lanjut di TKP":
+            $ current_node = 5
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+        "Interogasi saksi lagi":
+            $ current_node = 2
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 11
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 13")
+label telusuri_tkp:
+    scene bg crime_scene
+    show detective at char_pos
+
+    e "Aku terus mencari di TKP dan menemukan lebih banyak petunjuk."
+    hide detective
+
+    menu:
+        "Periksa lebih lanjut di TKP":
+            $ current_node = 14
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+        "Interogasi saksi lagi":
+            $ current_node = 1
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+        "Lapor ke bos":
+            $ current_node = 13
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+
 label lapor_bos:
     scene bg office
     show boss at char_pos
 
-    b "Bagaimana perkembangan kasusnya?"
+    b "Apa yang sudah kamu temukan sejauh ini?"
     hide boss
     show detective at char_pos
-    e "Aku menemukan beberapa petunjuk penting. Aku yakin ini akan membantu menyelesaikan kasus ini."
+
+    e "Aku menemukan beberapa petunjuk penting, tetapi kita perlu waktu lebih banyak untuk mengungkap ini."
     hide detective
-    show boss at char_pos
-    b "Bagus, teruskan pekerjaanmu. Kita harus segera menyelesaikan kasus ini."
-    hide boss
 
     menu:
         "Kembali bekerja":
-            jump kantor
-        "Istirahat sejenak":
-            jump istirahat
+            $ current_node = 14
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+        "Istirahat":
+            $ current_node = 20
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 14")
-label kantor:
+label kembali_kantor:
     scene bg office
     show detective at char_pos
 
-    e "Kembali ke kantor untuk menganalisis petunjuk lebih lanjut."
+    e "Aku kembali ke kantor untuk menganalisis petunjuk yang telah ditemukan."
     hide detective
 
     menu:
-        "Analisis rambut di lab":
-            jump analisis_rambut
-        "Telusuri jejak kaki":
-            jump telusuri_jejak
-        "Interogasi saksi lagi":
-            jump interogasi_saksi1
+        "Analisis rambut":
+            $ current_node = 15
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+        "Telusuri jejak":
+            $ current_node = 16
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+        "Lapor ke bos":
+            $ current_node = 13
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 26")
-label kejanggalan:
-    scene bg office
-    show detective at char_pos
-
-    e "Terlalu banyak kejanggalan dalam kasus ini"
-    hide detective
-
-    menu:
-        "Sepertinya kasus ini tidak akan terpecahkan dalam waktu dekat":
-            jump ending_tidak_jelas
-
-$ story_bubbles.add("Node 15")
 label analisis_rambut:
     scene bg lab
     show detective at char_pos
@@ -321,11 +401,14 @@ label analisis_rambut:
 
     menu:
         "Cari tersangka":
-            jump cari_tersangka
+            $ current_node = 17
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 13
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 16")
 label telusuri_jejak:
     scene bg street
     show detective at char_pos
@@ -335,13 +418,18 @@ label telusuri_jejak:
 
     menu:
         "Periksa rumah tersebut":
-            jump periksa_rumah
+            $ current_node = 18
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 13
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Jejak tersangka menghilang":
-            jump ending_kabur
+            $ current_node = 24
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 17")
 label cari_tersangka:
     scene bg street
     show detective at char_pos
@@ -351,11 +439,14 @@ label cari_tersangka:
 
     menu:
         "Tahan tersangka":
-            jump tahan_tersangka
+            $ current_node = 19
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 13
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 18")
 label periksa_rumah:
     scene bg crime_scene
     show detective at char_pos
@@ -365,11 +456,14 @@ label periksa_rumah:
 
     menu:
         "Tahan tersangka":
-            jump tahan_tersangka
+            $ current_node = 19
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 13
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 19")
 label tahan_tersangka:
     scene bg jail
     show detective at char_pos
@@ -379,24 +473,18 @@ label tahan_tersangka:
 
     menu:
         "Kasus selesai":
-            jump ending_sukses
+            $ current_node = 21
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Ada masalah":
-            jump ending_gagal
+            $ current_node = 22
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Kembali ke kantor":
-            jump kesalahan
+            $ current_node = 27
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 27")
-label kesalahan:
-    scene bg office
-    show detective at char_pos
-
-    e "Aku merasa ada yang aneh dari tersangka ini"
-
-    menu:
-        "Cari informasi lebih lanjut":
-            jump ending_salah_tangkap
-
-$ story_bubbles.add("Node 20")
 label istirahat:
     scene bg lounge
     show detective at char_pos
@@ -406,11 +494,14 @@ label istirahat:
 
     menu:
         "Kembali bekerja":
-            jump kantor
+            $ current_node = 14
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
         "Lapor ke bos":
-            jump lapor_bos
+            $ current_node = 13
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
 
-$ story_bubbles.add("Node 21")
 label ending_sukses:
     scene bg office
     show detective at char_pos
@@ -420,7 +511,6 @@ label ending_sukses:
 
     return
 
-$ story_bubbles.add("Node 22")
 label ending_gagal:
     scene bg office
     show detective at char_pos
@@ -430,7 +520,6 @@ label ending_gagal:
 
     return
 
-$ story_bubbles.add("Node 23")
 label ending_tidak_jelas:
     scene bg office
     show detective at char_pos
@@ -440,7 +529,6 @@ label ending_tidak_jelas:
 
     return
 
-$ story_bubbles.add("Node 24")
 label ending_kabur:
     scene bg office
     show detective at char_pos
@@ -450,7 +538,6 @@ label ending_kabur:
 
     return
 
-$ story_bubbles.add("Node 25")
 label ending_salah_tangkap:
     scene bg office
     show detective at char_pos
@@ -459,3 +546,47 @@ label ending_salah_tangkap:
     hide detective
 
     return
+
+label kejanggalan:
+    scene bg office
+    show detective at char_pos
+
+    e "Terlalu banyak kejanggalan dalam kasus ini"
+    hide detective
+
+    menu:
+        "Sepertinya kasus ini tidak akan terpecahkan dalam waktu dekat":
+            $ current_node = 23
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+        "Coba lihat lagi semua bukti yang ada":
+            $ current_node = 14
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+        "Tanyakan lagi ke saksi":
+            $ current_node = 2
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+        "Analisis lagi barang bukti":
+            $ current_node = 15
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+
+label kesalahan:
+    scene bg office
+    show detective at char_pos
+
+    e "Ada beberapa kesalahan dalam penyelidikan ini."
+    hide detective
+
+    menu:
+        "Perbaiki kesalahan dan lanjutkan penyelidikan":
+            $ current_node = 14
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+        "Laporkan ke bos dan evaluasi ulang":
+            $ current_node = 13
+            if story_bubbles.get(current_node):
+                jump expression story_bubbles.get(current_node)
+
+return
